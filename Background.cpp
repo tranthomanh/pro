@@ -19,11 +19,11 @@ void Background::PipeRender(SDL_Renderer* ren, SDL_Rect src, SDL_Rect dest)
 bool Background::Pipe_Above1Update(int incY, int &score, Mix_Chunk* audio)
 {
 	this->incY1 = incY;
-	if (pipeDistance1 <= -100)
+	if (pipeDistance1 <= -90)
 	{
 		pipeDistance1 += 900;
 		score++;
-		Mix_PlayChannel(-1, audio, 0);
+		Mix_PlayChannelTimed(-1, audio, 0, 200);
 		return true;
 	}
 	else
@@ -38,7 +38,7 @@ bool Background::Pipe_Above1Update(int incY, int &score, Mix_Chunk* audio)
 bool Background::Pipe_Below1Update(int incY)
 {
 	this->incY1 = incY;
-	if (pipeDistance1 <= -100)
+	if (pipeDistance1 <= -90)
 	{
 		pipeDistance1 += 900;
 		return true;
@@ -52,12 +52,13 @@ bool Background::Pipe_Below1Update(int incY)
 	}
 }
 
-bool Background::Pipe_Above2Update(int incY, int &score)
+bool Background::Pipe_Above2Update(int incY, int &score, Mix_Chunk* audio)
 {
 	this->incY2 = incY;
-	if (pipeDistance2 <= -100)
+	if (pipeDistance2 <= -90)
 	{
 		pipeDistance2 += 900;
+		Mix_PlayChannelTimed(-1, audio, 0, 200);
 		score++;
 		return true;
 	}
@@ -73,7 +74,7 @@ bool Background::Pipe_Above2Update(int incY, int &score)
 bool Background::Pipe_Below2Update(int incY)
 {
 	this->incY2 = incY;
-	if (pipeDistance2 <= -100)
+	if (pipeDistance2 <= -90)
 	{
 		pipeDistance2 += 900;
 		return true;
@@ -87,13 +88,14 @@ bool Background::Pipe_Below2Update(int incY)
 	}
 }
 
-bool Background::Pipe_Above3Update(int incY, int &score)
+bool Background::Pipe_Above3Update(int incY, int &score, Mix_Chunk* audio)
 {
 	this->incY3 = incY;
-	if (pipeDistance3 <= -100)
+	if (pipeDistance3 <= -90)
 	{
 		pipeDistance3 += 900;
 		pipeDistance3-=3;
+		Mix_PlayChannelTimed(-1, audio, 0, 200);
 		score++;
 		return true;
 	}
@@ -109,7 +111,7 @@ bool Background::Pipe_Above3Update(int incY, int &score)
 bool Background::Pipe_Below3Update(int incY)
 {
 	this->incY3 = incY;
-	if (pipeDistance3 <= -100)
+	if (pipeDistance3 <= -90)
 	{
 		pipeDistance3 += 900;
 		pipeDistance3-=3;

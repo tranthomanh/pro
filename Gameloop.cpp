@@ -75,8 +75,15 @@ void Gameloop::Intialize()
 			a[7].CreateTexture("image/7.png", renderer);
 			a[8].CreateTexture("image/8.png", renderer);
 			a[9].CreateTexture("image/9.png", renderer);
-			SoundGame = Mix_LoadWAV("sound/bird.wav");
+			if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+			return;
+			SoundPunch = Mix_LoadWAV("sound/punch.wav");
 			SoundPoint = Mix_LoadWAV("sound/ting.wav");
+			if(SoundPunch == NULL || SoundPoint == NULL)
+			{
+				cerr << -1 ;
+				return;
+			}
         }
     }
 }
@@ -189,22 +196,22 @@ void Gameloop::Update()
 		Pipe_Above1.Pipe_Above1Update(variance1, points, SoundPoint);
 		Pipe_Below1.Pipe_Below1Update(variance1);
 	}
-	flag1 = Pipe_Above2.Pipe_Above2Update(variance2, points);
+	flag1 = Pipe_Above2.Pipe_Above2Update(variance2, points, SoundPoint);
 	flag2 = Pipe_Below2.Pipe_Below2Update(variance2);
 	if (flag1 && flag2)
 	{
 		srand(SDL_GetTicks());
 		variance2 = rand() % 201 - 100;
-		Pipe_Above2.Pipe_Above2Update(variance2, points);
+		Pipe_Above2.Pipe_Above2Update(variance2, points, SoundPoint);
 		Pipe_Below2.Pipe_Below2Update(variance2);
 	}
-	flag1 = Pipe_Above3.Pipe_Above3Update(variance3, points);
+	flag1 = Pipe_Above3.Pipe_Above3Update(variance3, points, SoundPoint);
 	flag1 = Pipe_Below3.Pipe_Below3Update(variance3);
 	if (flag1 && flag2)
 	{
 		srand(SDL_GetTicks());
 		variance3 = rand() % 201 - 100;
-		Pipe_Above3.Pipe_Above3Update(variance3, points);
+		Pipe_Above3.Pipe_Above3Update(variance3, points, SoundPoint);
 		Pipe_Below3.Pipe_Below3Update(variance3);
 	}
 }
@@ -217,12 +224,14 @@ void Gameloop::CollisionDetection()
 		CollisionManager::CheckCollision(&p_fake, &pa2) || CollisionManager::CheckCollision(&p_fake, &pb2) || 
 		CollisionManager::CheckCollision(&p_fake, &pa3) || CollisionManager::CheckCollision(&p_fake, &pb3))
 	{
+		Mix_PlayChannelTimed(-1,SoundPunch,0,300);
 		SDL_Delay(300);
 		Reset();
 	}
 	else if (CollisionManager::CheckCollision(&p_fake, &gr1) || CollisionManager::CheckCollision(&p_fake, &gr2) || p.getYpos() < 0)
 	{
 		SDL_Delay(300); 
+		Mix_PlayChannelTimed(-1,SoundPunch,0,300);
 		Reset();
 	}
 }
@@ -246,7 +255,7 @@ void Gameloop::Reset()
 
 void Gameloop::Render()
 {
-	Mix_PlayChannel(-1, SoundGame, 0);
+	//Mix_PlayChannel(-1, SoundGame, 0);
     SDL_RenderClear(renderer);
     b.GroundRender(renderer);
 	Pipe_Above1.PipeRender(renderer, Pipe_Above1.getSrc(), Pipe_Above1.getDest());

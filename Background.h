@@ -21,9 +21,9 @@ class Background :public Object
         //6 hàm chạy của cột
         bool Pipe_Above1Update(int incY, int &score, Mix_Chunk* audio);
         bool Pipe_Below1Update(int incY);
-        bool Pipe_Above2Update(int incY, int& score);
+        bool Pipe_Above2Update(int incY, int& score, Mix_Chunk* audio);
         bool Pipe_Below2Update(int incY);
-        bool Pipe_Above3Update(int incY, int& score);
+        bool Pipe_Above3Update(int incY, int& score, Mix_Chunk* audio);
         bool Pipe_Below3Update(int incY);
         //hàm khởi tạo
         void Reset();

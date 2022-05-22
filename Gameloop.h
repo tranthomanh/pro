@@ -66,7 +66,7 @@ class Gameloop
         // HCN lưu vị trí để render điểm 
         SDL_Rect number1, number2, number3;
         //
-        // Mix_Chunk* SoundGame, *SoundPoint;
+        Mix_Chunk* SoundGame, *SoundPoint;
         
     public:
         //Hàm khởi tạo các biến và tọa độ

@@ -19,7 +19,7 @@ class Background :public Object
         int incY3 = 0;
     public:
         //6 hàm chạy của cột
-        bool Pipe_Above1Update(int incY, int &score);
+        bool Pipe_Above1Update(int incY, int &score, Mix_Chunk* audio);
         bool Pipe_Below1Update(int incY);
         bool Pipe_Above2Update(int incY, int& score);
         bool Pipe_Below2Update(int incY);

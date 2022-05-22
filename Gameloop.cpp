@@ -75,8 +75,8 @@ void Gameloop::Intialize()
 			a[7].CreateTexture("image/7.png", renderer);
 			a[8].CreateTexture("image/8.png", renderer);
 			a[9].CreateTexture("image/9.png", renderer);
-			// SoundGame = Mix_LoadWAV("sound/bird.wav");
-			// SoundPoint = Mix_LoadWAV("sound/ting.wav");
+			SoundGame = Mix_LoadWAV("sound/bird.wav");
+			SoundPoint = Mix_LoadWAV("sound/ting.wav");
         }
     }
 }
@@ -180,13 +180,13 @@ void Gameloop::Update()
 	bool flag1 = false, flag2 = false;
 	ground1.GroundUpdate1();
 	ground2.GroundUpdate2();
-	flag1 = Pipe_Above1.Pipe_Above1Update(variance1, points);
+	flag1 = Pipe_Above1.Pipe_Above1Update(variance1, points, SoundPoint);
 	flag2 = Pipe_Below1.Pipe_Below1Update(variance1);
 	if (flag1 && flag2)
 	{
 		srand(SDL_GetTicks());
 		variance1 = rand() % 201 - 100;
-		Pipe_Above1.Pipe_Above1Update(variance1, points);
+		Pipe_Above1.Pipe_Above1Update(variance1, points, SoundPoint);
 		Pipe_Below1.Pipe_Below1Update(variance1);
 	}
 	flag1 = Pipe_Above2.Pipe_Above2Update(variance2, points);
@@ -246,7 +246,7 @@ void Gameloop::Reset()
 
 void Gameloop::Render()
 {
-	//Mix_PlayChannel(-1, SoundGame, 0);
+	Mix_PlayChannel(-1, SoundGame, 0);
     SDL_RenderClear(renderer);
     b.GroundRender(renderer);
 	Pipe_Above1.PipeRender(renderer, Pipe_Above1.getSrc(), Pipe_Above1.getDest());

@@ -16,14 +16,14 @@ void Background::PipeRender(SDL_Renderer* ren, SDL_Rect src, SDL_Rect dest)
 	SDL_RenderCopy(ren, getTexture(), &src, &dest);
 }
 
-bool Background::Pipe_Above1Update(int incY, int &score)
+bool Background::Pipe_Above1Update(int incY, int &score, Mix_Chunk* audio)
 {
 	this->incY1 = incY;
 	if (pipeDistance1 <= -100)
 	{
 		pipeDistance1 += 900;
 		score++;
-		//Mix_PlayChannel(-1, audio, 0);
+		Mix_PlayChannel(-1, audio, 0);
 		return true;
 	}
 	else

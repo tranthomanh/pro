@@ -8,7 +8,6 @@ MainMenu::MainMenu()
 void MainMenu::Initialize(SDL_Renderer* ren)
 {
 	menuBackground.CreateTexture("Image/MainMenu.png", ren);
-    std::cout<<"Hello";
 }
 
 int MainMenu::EventHandling(SDL_Event& e)

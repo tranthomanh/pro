@@ -23,6 +23,7 @@ bool Background::Pipe_Above1Update(int incY, int &score)
 	{
 		pipeDistance1 += 900;
 		score++;
+		//Mix_PlayChannel(-1, audio, 0);
 		return true;
 	}
 	else

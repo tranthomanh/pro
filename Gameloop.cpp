@@ -75,6 +75,8 @@ void Gameloop::Intialize()
 			a[7].CreateTexture("image/7.png", renderer);
 			a[8].CreateTexture("image/8.png", renderer);
 			a[9].CreateTexture("image/9.png", renderer);
+			// SoundGame = Mix_LoadWAV("sound/bird.wav");
+			// SoundPoint = Mix_LoadWAV("sound/ting.wav");
         }
     }
 }
@@ -216,13 +218,11 @@ void Gameloop::CollisionDetection()
 		CollisionManager::CheckCollision(&p_fake, &pa3) || CollisionManager::CheckCollision(&p_fake, &pb3))
 	{
 		SDL_Delay(300);
-		generations++;
 		Reset();
 	}
 	else if (CollisionManager::CheckCollision(&p_fake, &gr1) || CollisionManager::CheckCollision(&p_fake, &gr2) || p.getYpos() < 0)
 	{
-		SDL_Delay(300);
-		generations++;
+		SDL_Delay(300); 
 		Reset();
 	}
 }
@@ -246,6 +246,7 @@ void Gameloop::Reset()
 
 void Gameloop::Render()
 {
+	//Mix_PlayChannel(-1, SoundGame, 0);
     SDL_RenderClear(renderer);
     b.GroundRender(renderer);
 	Pipe_Above1.PipeRender(renderer, Pipe_Above1.getSrc(), Pipe_Above1.getDest());

@@ -10,7 +10,7 @@ Mô tả trò chơi:
 Các chức năng của trò chơi:
 - Các chức năng của game là: bắt đầu trò chơi, chơi (điều khiển chim qua hàng ống), thua sẽ chuyển qua màn hình replay, ấn replay sẽ quay lại màn hình menu để chơi lại, exit để thoát game, tăng 1 điểm khi qua mỗi hàng ống và hiện thị điểm.
 - Âm thanh xuất hiện khi chim va chạm vào ống và khi vượt qua được 1 ống.
-- Video demo: https://youtu.be/GOWCYbMd7uU
+- Video demo + cách cài + cách chạy: https://youtu.be/GOWCYbMd7uU
 
 Các kĩ thuật sử dụng trong Game:
 - Thư viện SDL2, SDL2_image, SDL2_mixer.

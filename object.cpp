@@ -23,6 +23,7 @@ void Object::setSrc(int x, int y, int h, int w)
 	src.h = h;
 	src.w = w;
 }
+/haha
 
 void Object::setDest(int x, int y, int h, int w)
 {
